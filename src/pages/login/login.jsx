@@ -1,8 +1,8 @@
-import React from 'react';
+import React,{useEffect} from 'react';
 import {Form, Icon, Input, Button, Checkbox,message} from 'antd';
+import {connect} from 'react-redux'
 
-
-
+import {login} from '../../redux/actions'
 import './login.less'
 import {reqLogin} from "../../api/index";
 import memoryUtils from '../../utils/memoryUtils'
@@ -18,7 +18,7 @@ import {Redirect} from "react-router-dom";
         e.preventDefault();
         this.props.form.validateFields(async (err, {username,password}) => {
             if (!err) {
-                console.log(username, password);
+
                 const result = await reqLogin(username,password);
                 if(result.status === 0) {
                     // 提示登录成功
@@ -100,4 +100,7 @@ import {Redirect} from "react-router-dom";
 }
 
 const weLogin = Form.create()(Login);
-export default weLogin;
+export default connect(
+    state => ({user: state.user}),
+    {login}
+)(weLogin)

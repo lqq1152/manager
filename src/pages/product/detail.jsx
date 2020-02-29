@@ -7,7 +7,7 @@ import {
 
 
 import {BASE_IMG_PATH} from '../../utils/constants'
-import {reqCategory} from '../../api'
+import {reqProduct} from '../../api'
 import LinkButton from "../../component/link-button/link-button";
 
 const Item = List.Item
@@ -25,7 +25,9 @@ export default class ProductDetail extends Component {
     async componentDidMount () {
         const {categoryId} = this.props.location.state.product
         console.log(this.props.location.state.product);
-        const result = await reqCategory(categoryId)
+        console.log(categoryId);
+        const result = await reqProduct(categoryId)
+        console.log(result);
         const categoryName = result.data.name
         this.setState({ categoryName })
     }

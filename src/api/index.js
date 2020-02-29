@@ -43,8 +43,9 @@ export const reqAddCategory = (categoryName) => ajax({url: '/manage/category/add
 // 更新分类
 export const reqUpdateCategory = ({categoryId, categoryName}) => ajax({ url:'/manage/category/update', data:{categoryId, categoryName}, method:'POST'})
 // 根据分类ID获取分类
-export const reqCategory = () => ajax({url:'/manage/category/info'})
+export const reqCategory = (categoryId) => ajax.get('/manage/category/info',{params:{categoryId}})
 
+export const reqProduct = (productId) => ajax.get('/manage/product/info',{params:productId})
 // 获取商品分页列表
 export const reqProducts = (pageNum, pageSize) => ajax.get('/manage/product/list',{params:{pageNum, pageSize}})
 
@@ -65,4 +66,18 @@ export const reqUpdateStatus = (productId, status) => ajax({url:'/manage/product
 }, method:'POST'})
 
 // 删除图片
-export const reqDeleteImg = (name) => ajax({url:'/manage/img/delete',data: {name}, method:'POST'})
+export const reqDeleteImg = (name) => ajax({url:'/manage/img/delete',data: {name}, method:'POST'});
+
+// 获取所有角色的列表
+export const reqRoles = () => ajax.get('/manage/role/list')
+// 添加角色
+export const reqAddRole = (roleName) => ajax.post( '/manage/role/add', {roleName})
+// 添加角色
+export const reqUpdateRole = (role) => ajax.post( '/manage/role/update', role)
+
+// 获取所有用户的列表
+export const reqUsers = () => ajax.get( '/manage/user/list')
+// 删除指定用户
+export const reqDeleteUser = (userId) => ajax.post( '/manage/user/delete', {userId})
+// 添加/更新用户
+export const reqAddOrUpdateUser = (user) => ajax.post( '/manage/user/'+(user._id ? 'update' : 'add'), user)
