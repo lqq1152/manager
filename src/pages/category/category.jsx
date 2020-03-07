@@ -54,6 +54,7 @@ export default class Category extends Component {
         this.setState({loading: true})
         // 发异步ajax请求, 获取数据
         const result = await reqCategorys()
+
         // 在请求完成后, 隐藏loading
         this.setState({loading: false})
 

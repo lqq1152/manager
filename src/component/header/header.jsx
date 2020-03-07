@@ -28,11 +28,13 @@ function Header(props) {
         getWeather()
     }, []);
     useEffect(() => {
+        console.log("xxxxxxxxxxxxx");
         let intervalId = setInterval(() => {
             setSysTime(formateDate(Date.now()))
         }, 1000);
         return () => {
             clearInterval(intervalId)
+            console.log("清处");
         }
     }, [])
 
